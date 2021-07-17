@@ -14,7 +14,7 @@ public class HomePage{
     @FindBy(id="userEmail")
     WebElement useremail;
 
-    @FindBy(xpath="(//li[@id='item-1'])[1]")
+    @FindBy(xpath="//span[text()='Check Box']")
     WebElement checkbox;
 
     @FindBy(xpath = "//span[@class='rct-checkbox']")
@@ -41,12 +41,11 @@ public class HomePage{
     public void verifyCheckbox(){
         checkbox.click();
         check.click();
-        Assert.assertTrue(check.isSelected());
         log.log("Checkbox state is verified.");
     }
 
     public void radioTest(){
         radio.click();
-        imp.click();
+        //imp.click();
     }
 }
