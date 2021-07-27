@@ -14,7 +14,7 @@ public class ScreenshotGenerator extends Hooks {
         String screenshotPath = "";
         try {
             File screenshot = ((TakesScreenshot) Objects.requireNonNull(getWebDriver())).getScreenshotAs(OutputType.FILE);
-            screenshotPath = System.getProperty("user.dir") + "\\target\\screenshots\\" + UUID.randomUUID() + ".jpg";
+            screenshotPath = System.getProperty("user.dir") + "//Screenshots//" + UUID.randomUUID() + ".jpg";
             FileUtils.copyFile(screenshot, new File(screenshotPath));
         } catch (Exception e) {
             e.printStackTrace();

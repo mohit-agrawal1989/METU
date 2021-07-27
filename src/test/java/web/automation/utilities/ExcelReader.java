@@ -20,9 +20,9 @@ public class ExcelReader {
     int count = 0;
     Cell cell;
 
-    ExcelReader(String sheetName) throws IOException {
-        file = new FileInputStream(getPath()+"/src/test/resources/data/testdata.xlsx");
-        fout = new FileOutputStream(getPath()+"/src/test/resources/data/testdata.xlsx");
+    ExcelReader(String sheetName, String workbook) throws IOException {
+        file = new FileInputStream(getPath()+"/src/test/resources/data/"+workbook+".xlsx");
+        fout = new FileOutputStream(getPath()+"/src/test/resources/data/"+workbook+".xlsx");
         wb= new XSSFWorkbook(file);
         sheet = wb.getSheet(sheetName);
     }
@@ -55,10 +55,5 @@ public class ExcelReader {
         String absolutePathOfFirstFile = file.getAbsolutePath();
         path = absolutePathOfFirstFile.replaceAll("\\\\+", "/");
         return path;
-    }
-
-    public static void main(String s[]) throws IOException {
-        ExcelReader e = new ExcelReader("Sheet1");
-        System.out.println(e.readExcelByRowValue("username"));
     }
 }

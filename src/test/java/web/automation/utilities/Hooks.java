@@ -15,8 +15,20 @@ public class Hooks extends BrowserConfiguration {
     @BeforeMethod
     @Parameters({"browser"})
     protected void openApp(@Optional("chrome") String browser) {
+        String url = reader.readProperty("appUrl", "testInfo.properties");
         BrowserConfiguration.openBrowser(browser);
-        Objects.requireNonNull(getWebDriver()).navigate().to(reader.readProperty("appUrl", "testInfo.properties"));
+        if(url.contains("stage")){
+            Objects.requireNonNull(getWebDriver()).navigate().to(reader.readProperty("stage", "testInfo.properties"));
+        }
+        else if (url.contains("prod")){
+            Objects.requireNonNull(getWebDriver()).navigate().to(reader.readProperty("prod", "testInfo.properties"));
+        }
+        else if (url.contains("qa")){
+            Objects.requireNonNull(getWebDriver()).navigate().to(reader.readProperty("qa", "testInfo.properties"));
+        }
+        else
+            Objects.requireNonNull(getWebDriver()).navigate().to(reader.readProperty("qa", "testInfo.properties"));
+
         addAllPageObjects();
     }
 
